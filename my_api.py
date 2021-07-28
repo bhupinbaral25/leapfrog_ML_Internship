@@ -6,13 +6,15 @@ import numpy as np
 app = Flask(__name__)
 model = load('exam.joblib') 
 
-@app.route("/Predict/<int:values>", methods=['GET'])
-def main(values):
-    y = model.predict(np.array(values).reshape(-1, 1))
-    print(y)
+@app.route("/Predict/>", methods=['POST'])
+def Predict():
+    json_data = request.json
+
+    y = model.predict(np.array(json_data).reshape(-1, 1))
+    y = str(y)
     results={ 
             "Results for your values": y,
-            "given value":values
+            "given value":json_data
     }
     return jsonify(results)
 
