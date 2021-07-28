@@ -1,4 +1,4 @@
-from flask import Flask,jsonify
+
 from flask import Flask , request
 from joblib import load
 import numpy as np
